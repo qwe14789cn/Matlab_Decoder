@@ -23,13 +23,17 @@ if Submit :
         os.system(order)
 
         with st.spinner('Please wait ...'):
-            time.sleep(5)
+            time.sleep(2)
             #如果文件存在 解密成功
             if os.path.exists('.//encode/'+File.name+'.m'):
                 st.success(f'✔️File [{File.name}.m ] is successfully converted!')
                 col1,col2 = st.columns(2)
                 #col1.image('./pay.png',width= 300)
                 with open('.//encode/'+File.name+'.m', "rb") as file:
-                    btn = st.download_button(label="Download decoder file",data=file,file_name=File.name + '.m')
+                    st.markdown('---')
+                    st.code(file.read().decode('utf-8'),language='matlab',line_numbers=True)
+
+#                        st.code(file.readlines.decode('utf-8'), language="matlab", line_numbers=False)
+                    #btn = st.download_button(label="Download decoder file",data=file,file_name=File.name + '.m')
             else: #否则解密失败
                 st.error(f'❌File [{File.name}.m ] convert failed!')
